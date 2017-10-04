@@ -42,7 +42,7 @@ section { margin-top: 15px; background-color: #FFF; }
 	padding-left: 20px;
 	padding-top: 20px;
 	margin: 0; b
-	order:0px;
+	order: 0px;
 }
 
 .main-copy p {
@@ -66,5 +66,13 @@ section { margin-top: 15px; background-color: #FFF; }
 	display: none;
 	background-color: rgba(0, 0, 0, 0.85);
 	color: white;
-	z-index: 500;
+	z-index: 500;}
+
+  .close-lightbox {
+	float: right;
+	margin-right: 18px;
+	margin-top: 12px;
+	font-size: 2em;
+	cursor: pointer;
+	}
 }
