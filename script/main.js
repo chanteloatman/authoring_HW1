@@ -1,59 +1,102 @@
-
-(function (){
+(function () {
   var theImages = document.querySelectorAll('.image-holder'),
-  theHeader = document.querySelector('.heading'),
-  theSubhead = document.querySelector('.main-copy h2'),
-  theSeasonText = document.querySelector('.main-copy p'),
-  appliedClass;
+      theHeader = document.querySelector('.heading'),
+      theSubhead = document.querySelector('.main-copy h2'),
+      theSeasonText = document.querySelector('.main-copy p'),
+      appliedClass;
 
-function changeElements() {
-  // I want to load dynamic content here
-  //debugger; // can see what's happening inside a function with this
-  let subImages = document.querySelector('.subImagesContainer');
-  let objectIndex = dynamicContent[this.id]; //let lets you declare variables that are limited in scope to block, statement, or expression on which it is used
+      function changeElements() {
+        // i want to load dynamic content here
+        //debugger;
+        let subImages = document.querySelector('.subImagesContainer');
+        let objectIndex = dynamicContent[this.id];
 
-//remove all of the thumbnail images (stops the repeating of adding the thumbnail images below when you change the main image (season in our example))
-while(subImages.firstChild){
-  subImages.removeChild(subImages.firstChild);
-}
+        // remove all of the thumbnail images
+        while (subImages.firstChild) {
+          subImages.removeChild(subImages.firstChild);
+        }
+        // create an image element and add it to the page
+        objectIndex.images.forEach(function(element, index){
+          let newSubImg = document.createElement('img');
 
-//Create an image element and add it to the page
-objectIndex.images.forEach(function(element, index){
-  let newSubImg = document.createElement('img');
+          // add a css class
+          newSubImg.classList.add('thumb');
+          // add an image source
+          newSubImg.src = "images/" + objectIndex.images[index];
+          //add an index number to the thumbnail for array reference
+          newSubImg.dataset.index = index;
+          // add some event handling
+          newSubImg.addEventListener('click', function() {popLightbox(index, objectIndex); }, false);
 
-//add a class to css
-  newSubImg.classList.add('thumb');
-  //add an image source
-  newSubImg.src = "images/" + objectIndex.images[index];
-  //append it to the container
-  subImages.appendChild(newSubImg);
-});
+          // append it to the container
+          subImages.appendChild(newSubImg);
+        });
 
+        theSubhead.classList.remove(appliedClass);
+        theHeader.classList.remove(appliedClass);
 
-  theSubhead.classList.remove(appliedClass);
-  theHeader.classList.remove(appliedClass);//so in our example, after you click the last picture, the header color and text no longer changes
-  //what this line of code does (the two lines above), is after the last element is selected, it removes whatever applied class that last one had so the others work
-  //if you have clicked the last picture
+        theSubhead.classList.add(this.id);
+        theHeader.classList.add(this.id);
 
-  theSubhead.classList.add(this.id);
-  theHeader.classList.add(this.id);
+        theSubhead.firstChild.nodeValue = objectIndex.headline;
+        theSeasonText.firstChild.nodeValue = objectIndex.text;
 
-  theSubhead.firstChild.nodeValue = objectIndex.headline;
-  theSeasonText.firstChild.nodeValue = objectIndex.text;
+        appliedClass = this.id;
 
-  appliedClass = this.id;
-}
+        console.log(this.id);
+      }
 
-//want to apply same thing to all of the images
-theImages.forEach(function(element, index){
-//loop through and do stuff to each element at the top of the page
-element.addEventListener('click', changeElements, false);
+      theImages.forEach(function(element, index) {
+        //loop through and do stuff to each element at the top of the page
+        element.addEventListener('click', changeElements, false);
+      });
 
+      function popLightbox(currentIndex, currentObject) {
 
-//initialize the app
-//When the website opens, the first image text is showing now, so you don't have to click the first image to see something (not the placeholder as before)
-theSubhead.firstChild.nodeValue = dynamicContent['spring'].headline;
-theSeasonText.firstChild.nodeValue = dynamicContent['spring'].text;
-});
+        //debugger;
 
+        //turn on the lightbox
+        window.scrollTo(0, 0);
+        document.body.style.overflow = "hidden"; //disables ability to scroll on the page
+
+        // turn on the lightbox
+        let lightbox = document.querySelector('.lightbox');
+        lightbox.style.display = 'block';
+
+        // populate all the content on the page
+        let lightboxImg = lightbox.querySelector('img');
+        let lightboxClose = lightbox.querySelector('.close-lightbox');
+        let lightboxDesc = lightbox.querySelector('p');
+
+        lightboxImg.src = "images/" + currentObject.images[currentIndex];
+        lightboxDesc.innerHTML = currentObject.imageDescription[currentIndex];
+
+        lightboxClose.addEventListener('click', closeLightbox, false);
+      }
+
+      function closeLightbox(){
+      //This is how we will close the lightbox / reset scroll to work
+        let lightbox = document.querySelector('.lightbox');
+        lightbox.style.display = 'none'; //displays none for the lightbox
+        document.body.style.overflow = 'auto'; //lets you scroll again, back to auto from hidden
+
+      //To Unpopulate the content / reset
+        //The lightbox image:
+        let lightboxImg = lightbox.querySelector('img'); //close lightbox image
+        lightboxImg.src = 'none'; //the source will go away
+        //The lightbox description:
+        let lightboxDesc = lightbox.querySelector('p'); //close lightbox description
+        lightboxDesc.innerHTML = 'none'; //the source will go away
+
+        //reset all the lightbox content, close the lightbox (not neccessarily in that order)
+      }
+
+      // initialize the app
+      // theSubhead.firstChild.nodeValue = dynamicContent['spring'].headline;
+      // theSeasonText.firstChild.nodeValue = dynamicContent['spring'].text;
+      // theHeader.classList.add('spring');
+      //
+      //document.querySelector('#spring').click();
+
+      changeElements.call(document.querySelector('#spring'));
 })();
