@@ -6,7 +6,20 @@ var dynamicContent = {
 
 			images : [
 				"spring_1.jpg",
-				"spring_2.jpg"
+				"spring_2.jpg",
+				"spring_3.jpg",
+				"spring_4.jpg",
+				"spring_5.jpg",
+				"spring_6.jpg"
+			],
+//The comma after the descriptions and the images is to separate the different objects
+			imageDescription : [
+				'This is some pretty butterflies here in the scene.',
+				'This is a little baby chick, sitting in the grass.',
+				'This is is a beautiful bird, sitting on a tree branch.',
+				'Here are some lovely flowers.',
+				'Here are some lady bugs on a branch.',
+				'Here is a bee with some budding flowers.'
 			]
 		},
 
@@ -17,8 +30,21 @@ var dynamicContent = {
 
 			images : [
 				"summer_1.jpg",
-				"summer_2.jpg"
-			]
+				"summer_2.jpg",
+				"summer_3.jpg",
+				"summer_4.jpg",
+				"summer_5.jpg",
+				"summer_6.jpg"
+			], //the comma here is needed to sperate/show that there is also more objects (the descriptions in this case) after the images listed that are still relevant to summer
+
+			imageDescription : [
+				'These are some summer beach chairs.',
+				'This is a puppy relaxing on a nice summer day.',
+				'These are some cool shades to wear during that summer sun.',
+				'Here are some beach sea shells.',
+				'This is a sand castle building shovel, set in the sand at the beach.',
+				'Here is a nice refreshing drink, lemonade, for a hot summer day.' //no comma here because this is the end of the function area
+			] //no comma here also because this is at the end of the function
 		},
 
 		autumn : {
@@ -28,7 +54,20 @@ var dynamicContent = {
 
 			images : [
 				"autumn_1.jpg",
-				"autumn_2.jpg"
+				"autumn_2.jpg",
+				"autumn_3.jpg",
+				"autumn_4.jpg",
+				"autumn_5.jpg",
+				"autumn_6.jpg"
+			],
+
+			imageDescription : [
+				'Here is an lovely pathway, full of different colors of changin leaves.',
+				'These are some sunflowers, pumpkins, and gords.',
+				'Here are some beautiful fall leaves.',
+				'This is a squirrel enjoying the amazing fall season.',
+				'Benches sit in comfort amongst the piles of leaves.',
+				'Orange pumpkins sit in a pile.'
 			]
 		},
 
@@ -39,7 +78,20 @@ var dynamicContent = {
 
 			images : [
 				"winter_1.jpg",
-				"winter_2.jpg"
+				"winter_2.jpg",
+				"winter_3.jpg",
+				"winter_4.jpg",
+				"winter_5.jpg",
+				"winter_6.jpg"
+			],
+
+			imageDescription : [
+				'Here is a winter walking area.',
+				'Here is a winter snowman.',
+				'Here is an icy tree-branch.',
+				'Here is a Christmas ornament.',
+				'A cat enjoys the beauty of a Christmas tree.',
+				'A penguin waddles along a snow filled landscape.'
 			]
 		}
 	};
